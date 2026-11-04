@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ricardo Augusto | Desenvolvedor backend e de IA</title>
+<meta name="description" content="Ricardo Augusto, desenvolvedor backend e de IA em Vitória da Conquista, Bahia. Python, Node.js, AWS e LLMs em produção, de pagamentos a saúde pública.">
+<meta property="og:title" content="Ricardo Augusto | Desenvolvedor backend e de IA">
+<meta property="og:description" content="Mais de 4 anos construindo sistemas em produção com Python, Node.js, AWS e LLMs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ricardo-rals.github.io/">
+<meta name="theme-color" content="#0E1A2C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E1A2C'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='800' font-size='32' text-anchor='middle' fill='%23F2B544'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face {
+    font-family: "Archivo";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    font-stretch: 62% 125%;
+    src: url("fonts/archivo-latin-wdth-normal.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url("fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url("fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2");
+  }
+
+  :root {
+    --fundo: #0E1A2C;
+    --fundo-2: #0B1524;
+    --superficie: #15243A;
+    --superficie-2: #1B2E4A;
+    --borda: #263C5E;
+    --texto: #ECF1F8;
+    --suave: #A6B4CA;
+    --ouro: #F2B544;
+    --ouro-fundo: rgba(242, 181, 68, .12);
+    --verde: #5FD3B6;
+    --raio: 16px;
+    --sans: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --largura: 1160px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--ouro); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; border-radius: 6px; }
+
+  .faixa { max-width: var(--largura); margin: 0 auto; padding: 0 28px; }
+
+  /* Navegação */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(14, 26, 44, .82);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid rgba(38, 60, 94, .6);
+  }
+  .nav .faixa { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 68px; }
+  .nav .marca { color: var(--texto); font-weight: 750; font-stretch: 112%; font-size: 1.05rem; white-space: nowrap; }
+  .nav .marca:hover { text-decoration: none; }
+  .nav ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; align-items: center; }
+  .nav ul a { color: var(--suave); font-size: .95rem; padding: 8px 12px; border-radius: 999px; display: block; }
+  .nav ul a:hover { color: var(--texto); background: var(--superficie); text-decoration: none; }
+  .nav ul a.contato { color: var(--fundo); background: var(--ouro); font-weight: 650; }
+  .nav ul a.contato:hover { background: #F7C766; }
+
+  /* Abertura */
+  .abertura { padding-top: 84px; padding-bottom: 72px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; }
+  .papel { color: var(--ouro); font-weight: 600; font-size: 1.1rem; margin: 0 0 14px; }
+  h1 {
+    margin: 0;
+    font-size: clamp(2.9rem, 6.4vw, 4.9rem);
+    line-height: 1;
+    font-weight: 800;
+    font-stretch: 118%;
+    letter-spacing: -.02em;
+  }
+  .lead { font-size: 1.22rem; color: #D5DEEB; margin: 22px 0 0; max-width: 34em; }
+  .local { color: var(--suave); margin: 14px 0 0; }
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .botao {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 999px; font-weight: 650; font-size: 1rem;
+    border: 1px solid var(--borda); color: var(--texto); background: var(--superficie);
+  }
+  .botao:hover { text-decoration: none; border-color: #3A5582; background: var(--superficie-2); }
+  .botao.principal { background: var(--ouro); color: var(--fundo); border-color: var(--ouro); }
+  .botao.principal:hover { background: #F7C766; }
+  .botao svg { width: 18px; height: 18px; flex: none; }
+
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; padding: 0; list-style: none; }
+  .stack li { font-weight: 600; font-size: .95rem; padding: 7px 14px; border-radius: 999px; background: var(--ouro-fundo); color: #F7D58E; border: 1px solid rgba(242, 181, 68, .28); }
+
+  /* Demonstração */
+  .demo { background: var(--superficie); border: 1px solid var(--borda); border-radius: 20px; padding: 22px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .55); }
+  .demo-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .demo-topo strong { font-size: 1rem; }
+  .demo-topo a { font-size: .9rem; white-space: nowrap; }
+  .linhas { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .linhas button {
+    all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
+    display: flex; justify-content: space-between; gap: 12px;
+    font-family: var(--mono); font-size: .8rem; color: var(--suave);
+    padding: 8px 12px; border-radius: 10px; border: 1px solid transparent;
+  }
+  .linhas button span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .linhas li { min-width: 0; }
+  .linhas button:hover { background: var(--fundo-2); color: var(--texto); }
+  .linhas button[aria-pressed="true"] { background: var(--fundo-2); color: var(--texto); border-color: rgba(242, 181, 68, .5); }
+  .linhas button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 1px; }
+  .seta { display: flex; align-items: center; gap: 10px; color: var(--suave); font-size: .85rem; margin: 16px 2px 12px; }
+  .seta::before, .seta::after { content: ""; height: 1px; background: var(--borda); flex: 1; }
+  .resultado { background: var(--fundo-2); border-radius: 14px; padding: 16px 18px; display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; margin: 0; }
+  .resultado dt { color: var(--suave); font-size: .92rem; }
+  .resultado dd { margin: 0; font-weight: 600; }
+  .resultado dd.cat { color: var(--verde); }
+  .resultado.troca { animation: troca .35s ease-out; }
+  @keyframes troca { from { opacity: .25; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .resultado.troca { animation: none; } }
+
+  /* Empresas */
+  .empresas { border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda); background: var(--fundo-2); }
+  .empresas .faixa { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 40px; padding-top: 26px; padding-bottom: 26px; }
+  .empresas p { margin: 0; color: var(--suave); font-size: .95rem; }
+  .empresas ul { display: flex; flex-wrap: wrap; gap: 12px 36px; list-style: none; margin: 0; padding: 0; }
+  .empresas li { font-weight: 700; font-stretch: 112%; font-size: 1.08rem; color: #D5DEEB; }
+
+  /* Seções */
+  section.faixa { padding-top: 104px; }
+  .cabeca { max-width: 640px; margin-bottom: 40px; }
+  h2 { font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.08; margin: 0 0 12px; font-weight: 780; font-stretch: 115%; letter-spacing: -.01em; }
+  .cabeca p { color: var(--suave); margin: 0; font-size: 1.1rem; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 16px 0 0; padding: 0; }
+  .chips li { font-size: .82rem; color: var(--suave); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--borda); background: rgba(11, 21, 36, .5); }
+
+  /* Experiência */
+  .linha-tempo { list-style: none; margin: 0; padding: 0; position: relative; }
+  .linha-tempo::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; background: var(--borda); }
+  .cargo { position: relative; padding-left: 44px; margin-bottom: 22px; }
+  .cargo::before { content: ""; position: absolute; left: 0; top: 30px; width: 16px; height: 16px; border-radius: 50%; background: var(--fundo); border: 2px solid #4A6690; }
+  .cargo.atual::before { background: var(--ouro); border-color: var(--ouro); box-shadow: 0 0 0 5px var(--ouro-fundo); }
+  .cartao { background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 26px 28px; }
+  .cargo-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px 24px; flex-wrap: wrap; }
+  .cargo h3 { margin: 0; font-size: 1.45rem; font-weight: 750; font-stretch: 110%; line-height: 1.2; }
+  .cargo .funcao { margin: 4px 0 0; color: var(--ouro); font-weight: 600; }
+  .periodo { color: var(--suave); font-size: .95rem; white-space: nowrap; display: flex; align-items: center; gap: 10px; }
+  .selo { font-size: .78rem; font-weight: 700; color: var(--fundo); background: var(--verde); padding: 3px 10px; border-radius: 999px; }
+  .contexto { color: var(--suave); margin: 12px 0 0; }
+  .cargo ul.feitos { margin: 14px 0 0; padding-left: 1.15em; }
+  .cargo ul.feitos li { margin-bottom: 6px; }
+  .cargo ul.feitos li::marker { color: var(--ouro); }
+  .anteriores { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .anteriores .cartao { padding: 20px 22px; }
+  .anteriores h3 { font-size: 1.15rem; }
+
+  /* Como trabalho */
+  .passos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: passo; }
+  .passos li { background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 26px; counter-increment: passo; }
+  .passos li::before {
+    content: counter(passo);
+    display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px;
+    background: var(--ouro-fundo); color: var(--ouro); font-weight: 800; margin-bottom: 18px;
+  }
+  .passos h3 { margin: 0 0 8px; font-size: 1.2rem; font-stretch: 108%; }
+  .passos p { margin: 0; color: #CBD5E3; }
+  .passos .exemplo { margin-top: 14px; color: var(--suave); font-size: .95rem; padding-top: 14px; border-top: 1px solid var(--borda); }
+
+  /* Projetos */
+  .destaque { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; background: linear-gradient(160deg, #1A2D4A 0%, var(--superficie) 60%); border: 1px solid #31507D; border-radius: 22px; padding: 36px; margin-bottom: 22px; }
+  .destaque .tipo { color: var(--ouro); font-weight: 650; margin: 0 0 6px; }
+  .destaque h3 { font-size: 2rem; margin: 0 0 10px; font-stretch: 112%; font-weight: 780; line-height: 1.1; }
+  .destaque > div > p { color: #D5DEEB; margin: 0; }
+  .destaque ul.feitos { margin: 16px 0 0; padding-left: 1.15em; color: #CBD5E3; }
+  .destaque ul.feitos li { margin-bottom: 6px; }
+  .destaque ul.feitos li::marker { color: var(--ouro); }
+  .numeros { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; margin: 0; }
+  .numeros div { background: var(--fundo-2); border: 1px solid var(--borda); border-radius: 14px; padding: 18px; }
+  .numeros dd { margin: 0; font-size: 1.9rem; font-weight: 800; font-stretch: 110%; color: var(--texto); line-height: 1.1; }
+  .numeros dt { color: var(--suave); font-size: .9rem; margin-top: 6px; }
+  .numeros div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
+  .numeros-nota { grid-column: 1 / -1; color: var(--suave); font-size: .85rem; margin: 2px 0 0; }
+
+  .grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .projeto { background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 26px; display: flex; flex-direction: column; }
+  .projeto h3 { margin: 0 0 8px; font-size: 1.22rem; font-stretch: 108%; line-height: 1.25; }
+  .projeto p { margin: 0 0 10px; color: #CBD5E3; }
+  .projeto .prova { color: var(--texto); font-size: .97rem; }
+  .projeto .chips { margin-top: auto; padding-top: 12px; }
+  .links { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px; font-weight: 650; font-size: .97rem; }
+  .ver-todos { margin-top: 26px; color: var(--suave); }
+  .projeto .links, .destaque .links { margin: 18px 0 0; }
+  .feitos { list-style: disc; max-width: 80ch; }
+  .contexto { max-width: 80ch; }
+
+  /* Ensino e formação */
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .lista { list-style: none; margin: 0; padding: 0; }
+  .lista li { padding: 14px 0; border-top: 1px solid var(--borda); }
+  .lista li:first-child { border-top: 0; padding-top: 0; }
+  .lista strong { display: block; font-weight: 650; }
+  .lista span { color: var(--suave); font-size: .97rem; }
+  .duas h3 { margin: 0 0 16px; font-size: 1.2rem; font-stretch: 108%; }
+
+  /* Contato */
+  .contato-faixa { margin-top: 104px; background: var(--fundo-2); border-top: 1px solid var(--borda); }
+  .contato-faixa .faixa { padding-top: 80px; padding-bottom: 80px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+  .contato-faixa h2 { margin-bottom: 10px; }
+  .contato-faixa p { color: var(--suave); margin: 0; font-size: 1.1rem; }
+  .contato-faixa .acoes { justify-content: flex-end; margin: 0; }
+  footer { background: var(--fundo-2); color: var(--suave); font-size: .9rem; }
+  footer .faixa { border-top: 1px solid var(--borda); padding-top: 22px; padding-bottom: 32px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 980px) {
+    .abertura { grid-template-columns: minmax(0, 1fr); gap: 44px; padding-top: 56px; }
+    .grade { grid-template-columns: 1fr 1fr; }
+    .passos { grid-template-columns: 1fr; }
+    .destaque { grid-template-columns: minmax(0, 1fr); padding: 28px; }
+    .contato-faixa .faixa { grid-template-columns: 1fr; }
+    .contato-faixa .acoes { justify-content: flex-start; }
+  }
+  @media (max-width: 720px) {
+    .faixa { padding-left: 20px; padding-right: 20px; }
+    .nav ul li:not(:last-child) { display: none; }
+    .grade, .anteriores, .duas { grid-template-columns: 1fr; }
+    .cartao { padding: 22px; }
+    .cargo { padding-left: 34px; }
+    .linha-tempo::before { left: 6px; }
+    .cargo::before { width: 14px; height: 14px; top: 28px; }
+    .lead { font-size: 1.1rem; }
+    section.faixa { padding-top: 80px; }
+    .destaque { padding: 22px; }
+    .numeros dd { font-size: 1.55rem; }
+    .demo { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="faixa">
+    <a class="marca" href="#topo">Ricardo Augusto</a>
+    <nav aria-label="Seções">
+      <ul>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#como-trabalho">Como trabalho</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#formacao">Formação</a></li>
+        <li><a class="contato" href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="topo">
+  <div class="faixa abertura">
+    <div>
+      <p class="papel">Desenvolvedor backend e de IA</p>
+      <h1>Ricardo Augusto</h1>
+      <p class="lead">Mais de 4 anos construindo sistemas em produção, de pagamentos a saúde pública. Trabalho principalmente com Python, Node.js, AWS e LLMs, e faço o que o projeto precisar para chegar ao ar.</p>
+      <p class="local">Vitória da Conquista, Bahia. Aberto a trabalho remoto.</p>
+      <div class="acoes">
+        <a class="botao principal" href="#experiencia">Ver experiência</a>
+        <a class="botao" href="https://github.com/ricardo-rals">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub
+        </a>
+        <a class="botao" href="https://www.linkedin.com/in/ricardo-ralds/">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <ul class="stack" aria-label="Tecnologias principais">
+        <li>Python</li><li>Node.js</li><li>JavaScript</li><li>TypeScript</li><li>AWS</li><li>LLMs</li>
+      </ul>
+    </div>
+
+    <figure class="demo" aria-labelledby="demo-titulo" style="margin:0">
+      <div class="demo-topo">
+        <strong id="demo-titulo">Exemplo real do Cupom Fiscal</strong>
+        <a href="#projetos">Ver projeto</a>
+      </div>
+      <ul class="linhas" id="linhas" aria-label="Itens de uma nota fiscal"></ul>
+      <div class="seta">normalizado por LLM</div>
+      <dl class="resultado" id="resultado" aria-live="off">
+        <dt>Produto</dt><dd id="r-produto"></dd>
+        <dt>Marca</dt><dd id="r-marca"></dd>
+        <dt>Conteúdo</dt><dd id="r-conteudo"></dd>
+        <dt>Categoria</dt><dd id="r-categoria" class="cat"></dd>
+      </dl>
+    </figure>
+  </div>
+
+  <div class="empresas" aria-label="Onde já trabalhei">
+    <div class="faixa">
+      <p>Onde já trabalhei</p>
+      <ul>
+        <li>4Pay Finance</li>
+        <li>Compass UOL</li>
+        <li>UFBA, PET-Saúde</li>
+        <li>WM Saúde</li>
+        <li>Sirtec</li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="experiencia" class="faixa">
+    <div class="cabeca">
+      <h2>Experiência</h2>
+      <p>Fintech, consultoria, pesquisa em saúde pública e IA na AWS. O que eu fiz em cada lugar, do mais recente ao mais antigo.</p>
+    </div>
+
+    <ol class="linha-tempo">
+      <li class="cargo atual">
+        <article class="cartao">
+          <div class="cargo-topo">
+            <div>
+              <h3>4Pay Finance</h3>
+              <p class="funcao">Desenvolvedor Backend</p>
+            </div>
+            <p class="periodo"><span class="selo">Atual</span>Mar 2025 até hoje</p>
+          </div>
+          <p class="contexto">Plataforma de pagamentos P2P que conecta o mundo cripto às finanças pessoais.</p>
+          <ul class="feitos">
+            <li>Construí a integração com a API do Mercury Bank para a operação nos Estados Unidos, em AWS Lambda.</li>
+            <li>Redesenhei o processamento de documentos de KYC para ser idempotente, sem documento perdido nem processado duas vezes.</li>
+            <li>Automatizei a geração e publicação dos hashes de SSL pinning do app com Lambda, EventBridge, S3 e CloudFront, com assinatura ECDSA.</li>
+            <li>Provisionei o Secrets Manager com Terraform em desenvolvimento, homologação e produção.</li>
+          </ul>
+          <ul class="chips"><li>Node.js</li><li>TypeScript</li><li>Prisma</li><li>PostgreSQL</li><li>AWS Lambda</li><li>Terraform</li></ul>
+        </article>
+      </li>
+
+      <li class="cargo atual">
+        <article class="cartao">
+          <div class="cargo-topo">
+            <div>
+              <h3>Consultoria Salesforce</h3>
+              <p class="funcao">Especialista Salesforce</p>
+            </div>
+            <p class="periodo"><span class="selo">Atual</span>Projetos em andamento</p>
+          </div>
+          <p class="contexto">Projetos para Unimed Serra Gaúcha e Rede D'Or.</p>
+          <ul class="feitos">
+            <li>Desenvolvi agentes com Agentforce para apoiar a revisão de casos oncológicos na Rede D'Or.</li>
+            <li>Implementei a gestão de casos da Unimed Serra Gaúcha com processos de SLA, automação de marcos, triggers em Apex e Screen Flows.</li>
+          </ul>
+          <ul class="chips"><li>Agentforce</li><li>Apex</li><li>SOQL</li><li>Flows</li></ul>
+        </article>
+      </li>
+
+      <li class="cargo">
+        <article class="cartao">
+          <div class="cargo-topo">
+            <div>
+              <h3>UFBA, PET-Saúde Inovação e Saúde Digital</h3>
+              <p class="funcao">Monitor do Grupo Big Data</p>
+            </div>
+            <p class="periodo">Ago 2025 a mar 2026</p>
+          </div>
+          <p class="contexto">Programa do Ministério da Saúde que une UFBA, UESB e IFBA para levar inovação digital à Atenção Primária do SUS.</p>
+          <ul class="feitos">
+            <li>Desenvolvi painéis epidemiológicos de hipertensão, diabetes e obesidade sobre o e-SUS PEC, com mapa por bairro.</li>
+            <li>Treinei modelos de risco com scikit-learn. O de hipertensão chegou a ROC AUC de 0,89 em validação temporal com 67 mil registros.</li>
+            <li>Criei um pipeline que encontra pacientes hipertensos em texto clínico livre combinando busca aproximada e LLM.</li>
+          </ul>
+          <ul class="chips"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>FastAPI</li><li>React</li><li>LLMs</li></ul>
+        </article>
+      </li>
+
+      <li class="cargo">
+        <article class="cartao">
+          <div class="cargo-topo">
+            <div>
+              <h3>Compass UOL</h3>
+              <p class="funcao">Estagiário em IA e Machine Learning na AWS</p>
+            </div>
+            <p class="periodo">Out 2024 a mar 2025</p>
+          </div>
+          <ul class="feitos">
+            <li>Desenvolvi um chatbot com RAG para consulta de documentos jurídicos usando Amazon Bedrock, LangChain e Chroma.</li>
+            <li>Implementei APIs REST em Python que extraem dados de notas fiscais eletrônicas com Amazon Textract.</li>
+          </ul>
+          <ul class="chips"><li>Amazon Bedrock</li><li>LangChain</li><li>Textract</li><li>Python</li><li>Docker</li><li>CloudWatch</li></ul>
+        </article>
+      </li>
+
+      <li class="cargo">
+        <div class="anteriores">
+          <article class="cartao">
+            <div class="cargo-topo">
+              <div>
+                <h3>WM Saúde</h3>
+                <p class="funcao">Desenvolvedor Backend</p>
+              </div>
+              <p class="periodo">Nov 2022 a mar 2025</p>
+            </div>
+            <p class="contexto">Sistemas de gestão hospitalar em PHP com Laravel e MySQL, automação de servidores com Python e containers Docker.</p>
+          </article>
+          <article class="cartao">
+            <div class="cargo-topo">
+              <div>
+                <h3>Sirtec Sistemas Elétricos</h3>
+                <p class="funcao">Desenvolvedor Backend</p>
+              </div>
+              <p class="periodo">Mai a nov 2022</p>
+            </div>
+            <p class="contexto">Automação de processos internos com Laravel e MySQL, incluindo autenticação e controle de acesso.</p>
+          </article>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="como-trabalho" class="faixa">
+    <div class="cabeca">
+      <h2>Como eu trabalho</h2>
+      <p>Uso IA no ciclo inteiro de desenvolvimento, com especificação na entrada e medição na saída.</p>
+    </div>
+    <ol class="passos">
+      <li>
+        <h3>Especificação primeiro</h3>
+        <p>Com spec-driven development, cada funcionalidade nasce como requisito com critério de aceite antes de virar código. O teste confere exatamente esse critério.</p>
+        <p class="exemplo">No Analytica Lab Engine, cada fórmula tem critério de aceite e os 85 testes vêm deles.</p>
+      </li>
+      <li>
+        <h3>IA no ciclo, decisão comigo</h3>
+        <p>Sigo o AI-DLC, metodologia da AWS em que agentes de IA propõem plano, código e testes, e eu valido cada decisão antes de seguir para a próxima etapa.</p>
+        <p class="exemplo">Os agentes recebem a especificação como fonte da verdade: funcionalidade nova entra primeiro nela.</p>
+      </li>
+      <li>
+        <h3>Medir antes de publicar</h3>
+        <p>Quando um LLM entra no produto, ele só vai para produção com conjunto de avaliação, meta de acerto e teto de custo definidos.</p>
+        <p class="exemplo">No Cupom Fiscal, 97% de acerto de categoria a menos de R$ 0,05 por cupom.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="projetos" class="faixa">
+    <div class="cabeca">
+      <h2>Projetos</h2>
+      <p>Código aberto no meu GitHub. Os que estão no ar têm link direto.</p>
+    </div>
+
+    <article class="destaque">
+      <div>
+        <p class="tipo">Projeto principal</p>
+        <h3>Cupom Fiscal</h3>
+        <p>Controle de compras de supermercado a partir do QR Code da nota fiscal. Cada item vira dado estruturado para comparar preço e somar gasto de verdade.</p>
+        <ul class="feitos">
+          <li>Lê a NFC-e da Bahia e normaliza os itens com LLM, com fila de revisão para os casos incertos.</li>
+          <li>Histórico de preço por produto e mercado, painel de gastos e previsão de preço.</li>
+          <li>Responde perguntas em português gerando SQL validado com sqlglot e executado num papel somente leitura.</li>
+          <li>Testes garantem que o CPF do consumidor nunca fica guardado.</li>
+        </ul>
+        <ul class="chips"><li>NestJS</li><li>Next.js</li><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Gemini</li><li>Docker</li></ul>
+        <p class="links"><a href="https://github.com/ricardo-rals/cupom-fiscal">Ver código</a></p>
+      </div>
+      <dl class="numeros">
+        <div><dt>categoria correta em 200 itens rotulados</dt><dd>97%</dd></div>
+        <div><dt>produto e unidade corretos</dt><dd>82%</dd></div>
+        <div><dt>custo por cupom de 30 itens</dt><dd>&lt; R$ 0,05</dd></div>
+        <div><dt>itens enviados para revisão humana</dt><dd>1 de 200</dd></div>
+        <p class="numeros-nota">145 itens de cupons reais anonimizados e 55 sintéticos.</p>
+      </dl>
+    </article>
+
+    <div class="grade">
+      <article class="projeto">
+        <h3>Analytica Lab Engine</h3>
+        <p>Calculadora de laboratório analítico que mostra cada etapa do cálculo até o resultado com unidade.</p>
+        <p class="prova">Roda no navegador com Pyodide, sem servidor, e tem 85 testes.</p>
+        <ul class="chips"><li>Python</li><li>Streamlit</li><li>Pyodide</li><li>pytest</li></ul>
+        <p class="links"><a href="https://ricardo-rals.github.io/analitica-lab-engine/">Usar agora</a><a href="https://github.com/ricardo-rals/analitica-lab-engine">Código</a></p>
+      </article>
+      <article class="projeto">
+        <h3>Plataforma de Saúde Pública</h3>
+        <p>Painéis epidemiológicos e predição de risco sobre o e-SUS PEC de Vitória da Conquista.</p>
+        <p class="prova">ROC AUC de 0,89 em validação temporal com 67 mil registros.</p>
+        <ul class="chips"><li>FastAPI</li><li>React</li><li>scikit-learn</li><li>Leaflet</li></ul>
+        <p class="links"><a href="https://github.com/ricardo-rals/projeto-unificado">Código</a></p>
+      </article>
+      <article class="projeto">
+        <h3>Sistema CAC</h3>
+        <p>Análise dos dados das catracas eletrônicas do IFBA, com importação, painéis e relatórios.</p>
+        <p class="prova">Fui Scrum Master de um time de 8 pessoas.</p>
+        <ul class="chips"><li>Django</li><li>HTMX</li><li>PostgreSQL</li><li>Docker</li></ul>
+        <p class="links"><a href="https://github.com/ricardo-rals/controle_catraca">Código</a></p>
+      </article>
+      <article class="projeto">
+        <h3>Auditoria de hipertensão com IA</h3>
+        <p>Encontra pacientes hipertensos em anotações médicas. Um filtro local seleciona os candidatos e só eles vão para o LLM.</p>
+        <p class="prova">Descarta falsos positivos como "nega hipertensão".</p>
+        <ul class="chips"><li>Python</li><li>RapidFuzz</li><li>LangChain</li><li>Gemini</li></ul>
+        <p class="links"><a href="https://github.com/ricardo-rals/auditoria-hipertensao-ia">Código</a></p>
+      </article>
+      <article class="projeto">
+        <h3>Failover transparente</h3>
+        <p>Se a réplica cai no meio do download, o sistema continua de onde parou em outra réplica.</p>
+        <p class="prova">Retomada com HTTP Range Requests.</p>
+        <ul class="chips"><li>Go</li><li>HTTP</li></ul>
+        <p class="links"><a href="https://github.com/ricardo-rals/failover-transparency">Código</a></p>
+      </article>
+      <article class="projeto">
+        <h3>API de banco digital</h3>
+        <p>Conta digital com depósito, saque e extrato.</p>
+        <p class="prova">Mutex por conta impede saldo negativo em saques simultâneos.</p>
+        <ul class="chips"><li>Node.js</li><li>TypeScript</li><li>Zod</li><li>Jest</li></ul>
+        <p class="links"><a href="https://github.com/ricardo-rals/banco-digital-api">Código</a></p>
+      </article>
+    </div>
+    <p class="ver-todos">Mais projetos, de Flutter a sistemas embarcados em C, no <a href="https://github.com/ricardo-rals?tab=repositories">meu GitHub</a>.</p>
+  </section>
+
+  <section id="formacao" class="faixa">
+    <div class="cabeca">
+      <h2>Formação e comunidade</h2>
+    </div>
+    <div class="duas">
+      <div class="cartao">
+        <h3>Formação e certificações</h3>
+        <ul class="lista">
+          <li><strong>Sistemas de Informação, IFBA</strong><span>Bacharelado, conclusão prevista para 2027</span></li>
+          <li><strong>Ciência de Dados, Estácio</strong><span>Desde 2024</span></li>
+          <li><strong>AWS Certified Cloud Practitioner</strong><span>Mais cursos de Bedrock, Boto3, Terraform e Step Functions</span></li>
+        </ul>
+      </div>
+      <div class="cartao">
+        <h3>Ensino e comunidade</h3>
+        <ul class="lista">
+          <li><strong>GruPy</strong><span>Organizo eventos da comunidade Python da região</span></li>
+          <li><strong><a href="https://ricardo-rals.github.io/minicurso-python-excel/">Minicurso Python para Excel</a></strong><span>Slides interativos, exercícios e quizzes</span></li>
+          <li><strong><a href="https://github.com/ricardo-rals/minicurso-ia-simbolica">Minicurso de IA simbólica</a></strong><span>Sistemas especialistas e restrições com Python, no IFBA</span></li>
+          <li><strong><a href="https://github.com/ricardo-rals/plano-de-aula-ia">Cursos de extensão no IFBA</a></strong><span>Computação e IA generativa para adolescentes sem experiência prévia</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="contato-faixa" id="contato">
+  <div class="faixa">
+    <div>
+      <h2>Vamos conversar</h2>
+      <p>Backend, IA aplicada ou um sistema que precisa sair do papel. Respondo pelo e-mail ou pelo LinkedIn.</p>
+    </div>
+    <div class="acoes">
+      <a class="botao principal" href="mailto:ricardo.rals.dev@gmail.com">ricardo.rals.dev@gmail.com</a>
+      <a class="botao" href="https://www.linkedin.com/in/ricardo-ralds/">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="faixa">
+    <span>Ricardo Augusto Lima da Silva</span>
+    <span>Publicado no GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  const itens = [
+    { linha: "REQ BETANIA 400G TRAD", produto: "Requeijão tradicional", marca: "Betânia", conteudo: "0,4 kg", categoria: "Manteiga, requeijão e creme de leite" },
+    { linha: "LEITE LV NATVILLE 1L INT", produto: "Leite longa vida integral", marca: "Natville", conteudo: "1 l", categoria: "Leite" },
+    { linha: "FEIJAO CARIOCA TA NA MESA 1kg", produto: "Feijão carioca", marca: "Tá na Mesa", conteudo: "1 kg", categoria: "Arroz e feijão" },
+    { linha: "MOLHO TOM BONARE 300GR TRAD SACH", produto: "Molho de tomate tradicional", marca: "Bonare", conteudo: "0,3 kg", categoria: "Molhos e temperos" },
+    { linha: "CAFE BOM JESUS 250G VACUO TRADICIONAL", produto: "Café tradicional a vácuo", marca: "Bom Jesus", conteudo: "0,25 kg", categoria: "Café e chá" },
+    { linha: "LIMAO TAHITI kg", produto: "Limão taiti", marca: "Sem marca", conteudo: "1 kg", categoria: "Frutas" }
+  ];
+
+  const lista = document.getElementById("linhas");
+  const resultado = document.getElementById("resultado");
+  const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let atual = 0;
+  let timer = null;
+
+  itens.forEach((item, i) => {
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-pressed", "false");
+    const nome = document.createElement("span");
+    nome.textContent = item.linha;
+    const n = document.createElement("span");
+    n.textContent = String(i + 1).padStart(2, "0");
+    n.setAttribute("aria-hidden", "true");
+    b.append(nome, n);
+    b.addEventListener("click", () => { parar(); resultado.setAttribute("aria-live", "polite"); mostrar(i); });
+    li.appendChild(b);
+    lista.appendChild(li);
+  });
+
+  function mostrar(i) {
+    atual = i;
+    const item = itens[i];
+    lista.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+    document.getElementById("r-produto").textContent = item.produto;
+    document.getElementById("r-marca").textContent = item.marca;
+    document.getElementById("r-conteudo").textContent = item.conteudo;
+    document.getElementById("r-categoria").textContent = item.categoria;
+    resultado.classList.remove("troca");
+    void resultado.offsetWidth;
+    resultado.classList.add("troca");
+  }
+
+  function parar() { if (timer) { clearInterval(timer); timer = null; } }
+
+  mostrar(0);
+  if (!reduzir) {
+    timer = setInterval(() => mostrar((atual + 1) % itens.length), 3000);
+    const demo = document.querySelector(".demo");
+    demo.addEventListener("mouseenter", parar);
+    demo.addEventListener("focusin", parar);
+  }
+</script>
+</body>
+</html>
