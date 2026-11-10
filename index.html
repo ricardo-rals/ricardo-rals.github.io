@@ -207,6 +207,8 @@
   .numeros div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
   .numeros-nota { grid-column: 1 / -1; color: var(--suave); font-size: .85rem; margin: 2px 0 0; }
 
+  .print { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--borda); margin: 0 0 16px; background: var(--fundo-2); }
+  .destaque .print { margin: 20px 0 0; }
   .grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
   .projeto { background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 26px; display: flex; flex-direction: column; }
   .projeto h3 { margin: 0 0 8px; font-size: 1.22rem; font-stretch: 108%; line-height: 1.25; }
@@ -447,7 +449,7 @@
       <li>
         <h3>Especificação primeiro</h3>
         <p>Com spec-driven development, cada funcionalidade nasce como requisito com critério de aceite antes de virar código. O teste confere exatamente esse critério.</p>
-        <p class="exemplo">No Analytica Lab Engine, cada fórmula tem critério de aceite e os 85 testes vêm deles.</p>
+        <p class="exemplo">No Notas Telegram, cada uma das 10 funcionalidades teve especificação, plano e tarefas no GitHub Spec Kit antes do código.</p>
       </li>
       <li>
         <h3>IA no ciclo, decisão comigo</h3>
@@ -493,6 +495,13 @@
 
     <div class="grade">
       <article class="projeto">
+        <h3>Notas Telegram</h3>
+        <p>Transforma um grupo privado do Telegram num caderno pesquisável. Cada mensagem vira nota, com prévia de links, tags, busca e linha do tempo.</p>
+        <p class="prova">10 funcionalidades feitas com Spec Kit, cada uma com especificação, plano e tarefas, e 194 testes.</p>
+        <ul class="chips"><li>Python</li><li>FastAPI</li><li>HTMX</li><li>PostgreSQL</li><li>Telethon</li></ul>
+        <p class="links"><a href="https://github.com/ricardo-rals/notas-telegram">Código</a></p>
+      </article>
+      <article class="projeto">
         <h3>Analytica Lab Engine</h3>
         <p>Calculadora de laboratório analítico que mostra cada etapa do cálculo até o resultado com unidade.</p>
         <p class="prova">Roda no navegador com Pyodide, sem servidor, e tem 85 testes.</p>
@@ -527,15 +536,8 @@
         <ul class="chips"><li>Go</li><li>HTTP</li></ul>
         <p class="links"><a href="https://github.com/ricardo-rals/failover-transparency">Código</a></p>
       </article>
-      <article class="projeto">
-        <h3>API de banco digital</h3>
-        <p>Conta digital com depósito, saque e extrato.</p>
-        <p class="prova">Mutex por conta impede saldo negativo em saques simultâneos.</p>
-        <ul class="chips"><li>Node.js</li><li>TypeScript</li><li>Zod</li><li>Jest</li></ul>
-        <p class="links"><a href="https://github.com/ricardo-rals/banco-digital-api">Código</a></p>
-      </article>
     </div>
-    <p class="ver-todos">Mais projetos, de Flutter a sistemas embarcados em C, no <a href="https://github.com/ricardo-rals?tab=repositories">meu GitHub</a>.</p>
+    <p class="ver-todos">Mais projetos no <a href="https://github.com/ricardo-rals?tab=repositories">meu GitHub</a>, como uma <a href="https://github.com/ricardo-rals/banco-digital-api">API de banco digital</a> em Node.js, um app em Flutter e <a href="https://github.com/ricardo-rals/embarcatech-rp2040">sistemas embarcados em C</a>.</p>
   </section>
 
   <section id="formacao" class="faixa">
@@ -546,8 +548,8 @@
       <div class="cartao">
         <h3>Formação e certificações</h3>
         <ul class="lista">
-          <li><strong>Sistemas de Informação, IFBA</strong><span>Bacharelado, conclusão prevista para 2027</span></li>
-          <li><strong>Ciência de Dados, Estácio</strong><span>Desde 2024</span></li>
+          <li><strong>Pós-graduação em Engenharia de IA Aplicada, UniPDS</strong><span>Em andamento: LLMs, RAG, agentes, MCP e fine-tuning</span></li>
+          <li><strong>Sistemas de Informação, IFBA</strong><span>Bacharelado, conclusão prevista para dezembro de 2027</span></li>
           <li><strong>AWS Certified Cloud Practitioner</strong><span>Mais cursos de Bedrock, Boto3, Terraform e Step Functions</span></li>
         </ul>
       </div>
